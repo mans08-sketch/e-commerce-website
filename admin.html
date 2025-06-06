@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ShopMate - Admin Panel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="logo">ShopMate</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="products.html">Products</a>
+      <a href="cart.html">Cart (<span id="cart-count">0</span>)</a>
+      <a href="login.html" id="login-link">Login</a>
+    </nav>
+  </header>
+  <main>
+    <h2>Admin Panel</h2>
+    <div>
+      <h3>Product List</h3>
+      <table id="admin-products" class="admin-table">
+        <thead>
+          <tr><th>ID</th><th>Name</th><th>Price</th><th>Stock</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <div class="admin-note">
+      <em>This is a demo admin panel. For a real system, add authentication and backend.</em>
+    </div>
+  </main>
+  <footer>
+    <p>&copy; 2025 ShopMate. All rights reserved.</p>
+  </footer>
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      updateCartCount();
+      updateLoginNav();
+      // Render products in admin table
+      const tbody = document.querySelector('#admin-products tbody');
+      products.forEach(p => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td>${p.id}</td><td>${p.name}</td><td>$${p.price}</td><td>${p.stock}</td>`;
+        tbody.appendChild(tr);
+      });
+    });
+  </script>
+</body>
+</html>

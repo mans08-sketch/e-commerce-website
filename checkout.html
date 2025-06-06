@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ShopMate - Checkout</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="logo">ShopMate</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="products.html">Products</a>
+      <a href="cart.html">Cart (<span id="cart-count">0</span>)</a>
+      <a href="login.html" id="login-link">Login</a>
+    </nav>
+  </header>
+  <main>
+    <h2>Checkout</h2>
+    <form id="checkout-form" class="checkout-form">
+      <label>
+        Name:
+        <input type="text" required name="name">
+      </label>
+      <label>
+        Address:
+        <input type="text" required name="address">
+      </label>
+      <label>
+        Email:
+        <input type="email" required name="email">
+      </label>
+      <label>
+        Card Number:
+        <input type="text" required name="card" maxlength="19" placeholder="1234 5678 9012 3456" pattern="[0-9 ]+">
+      </label>
+      <button type="submit">Place Order</button>
+    </form>
+    <div id="checkout-message"></div>
+  </main>
+  <footer>
+    <p>&copy; 2025 ShopMate. All rights reserved.</p>
+  </footer>
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      updateCartCount();
+      updateLoginNav();
+      const form = document.getElementById('checkout-form');
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        localStorage.removeItem('cart');
+        document.getElementById('checkout-message').textContent = "Order placed! Thank you for shopping at ShopMate.";
+        form.reset();
+      });
+    });
+  </script>
+</body>
+</html>

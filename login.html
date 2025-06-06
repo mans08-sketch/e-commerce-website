@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ShopMate - Login / Signup</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="logo">ShopMate</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="products.html">Products</a>
+      <a href="cart.html">Cart (<span id="cart-count">0</span>)</a>
+      <a href="login.html" id="login-link">Login</a>
+    </nav>
+  </header>
+  <main>
+    <div class="auth-container">
+      <h2 id="auth-title">Login</h2>
+      <form id="auth-form">
+        <label>
+          Username:
+          <input type="text" required name="username">
+        </label>
+        <label>
+          Password:
+          <input type="password" required name="password">
+        </label>
+        <button type="submit">Login</button>
+      </form>
+      <p id="toggle-auth">
+        Don't have an account? <a href="#" onclick="toggleAuth(event)">Sign up</a>
+      </p>
+      <div id="auth-message"></div>
+    </div>
+  </main>
+  <footer>
+    <p>&copy; 2025 ShopMate. All rights reserved.</p>
+  </footer>
+  <script src="script.js"></script>
+  <script>
+    let isLogin = true;
+    function toggleAuth(e) {
+      e.preventDefault();
+      isLogin = !isLogin;
+      document.getElementById('auth-title').textContent = isLogin ? "Login" : "Sign Up";
+      document.querySelector('#auth-form button').textContent = isLogin ? "Login" : "Sign Up";
+      document.getElementById('toggle-auth').innerHTML = isLogin ? 
+        `Don't have an account? <a href="#" onclick="toggleAuth(event)">Sign up</a>` :
+        `Already have an account? <a href="#" onclick="toggleAuth(event)">Login</a>`;
+      document.getElementById('auth-message').textContent = "";
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      updateCartCount();
+      updateLoginNav();
+      document.getElementById('auth-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        // Fake auth: just store username in localStorage
+        const username = this.username.value;
+        if (isLogin) {
+          localStorage.setItem('user', username);
+          document.getElementById('auth-message').textContent = "Logged in!";
+          setTimeout(() => { window.location.href = "index.html"; }, 1000);
+        } else {
+          localStorage.setItem('user', username);
+          document.getElementById('auth-message').textContent = "Account created and logged in!";
+          setTimeout(() => { window.location.href = "index.html"; }, 1000);
+        }
+      });
+    });
+  </script>
+</body>
+</html>

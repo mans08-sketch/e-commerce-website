@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ShopMate - Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="logo">ShopMate</div>
+    <nav>
+      <a href="inex.html">Home</a>
+      <a href="products.html">Products</a>
+      <a href="cart.html">Cart (<span id="cart-count">0</span>)</a>
+      <a href="login.html" id="login-link">Login</a>
+    </nav>
+  </header>
+  <main>
+    <section class="banner">
+      <h1>Welcome to ShopMate!</h1>
+      <p>Your one-stop shop for all things awesome.</p>
+    </section>
+    <section class="featured-products">
+      <h2>Featured Products</h2>
+      <div class="product-grid" id="featured-products"></div>
+      <a href="products.html" class="view-all-btn">View All Products</a>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2025 ShopMate. All rights reserved.</p>
+  </footer>
+  <script src="script.js"></script>
+  <script>
+    // Load 4 featured products on home
+    document.addEventListener('DOMContentLoaded', () => {
+      renderProducts('featured-products', 4);
+      updateCartCount();
+      updateLoginNav();
+    });
+  </script>
+</body>
+</html>
